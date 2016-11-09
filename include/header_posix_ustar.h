@@ -19,6 +19,6 @@ typedef struct header_posix_ustar {
   char devminor[8];
   char prefix[155];
   char pad[12];
-};
+} header_posix_ustar;
 
 #endif
