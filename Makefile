@@ -4,7 +4,6 @@ SRCDIR = src
 INCDIR = include
 BUILDDIR = build
 PGM = ptar
-GUI = bin/window
 INC = -I $(INCDIR)
 OBJDIR = obj
 TARGET = bin/$(PGM)
@@ -20,18 +19,12 @@ all: main run
 	$(CC) $(CFLAGS) $(INC) -c $< -o $(OBJDIR)/$@
 
 
-window: $(SRCDIR)/window.c
-	gcc `pkg-config --cflags gtk+-3.0` $^ -o $(GUI)  `pkg-config --libs gtk+-3.0`
-	@./$(GUI) 2>/dev/null
-
-
 main: utils.o warehouse.o network.o generator.o parser.o djikstra.o main.o 
-	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET) -lm
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
 
 clean:
-	rm -rf bin $(TARGET) $(OBJDIR) $(GUI)
-	rm *.png *.dot
+	rm -rf bin $(TARGET) $(OBJDIR)
 
 
 valgrind: main
