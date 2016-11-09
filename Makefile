@@ -19,15 +19,20 @@ all: main run
 	$(CC) $(CFLAGS) $(INC) -c $< -o $(OBJDIR)/$@
 
 
-main: utils.o warehouse.o network.o generator.o parser.o djikstra.o main.o 
+main: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
 
 clean:
-	rm -rf bin $(TARGET) $(OBJDIR)
+	rm -rf $(OBJDIR)
+
+mrproper: 
+	clean
+	rm -rf $(TARGET)
 
 
-valgrind: main
+valgrind:
+	main
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all -v ./bin/main
 
 
