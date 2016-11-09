@@ -18,7 +18,7 @@ all: main run
 %.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $(OBJDIR)/$@
 
-main: $(OBJ)
+main: main.o
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
 clean:
