@@ -18,10 +18,8 @@ all: main run
 %.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $(OBJDIR)/$@
 
-
 main: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
-
 
 clean:
 	rm -rf $(OBJDIR)
@@ -30,11 +28,9 @@ mrproper:
 	clean
 	rm -rf $(TARGET)
 
-
 valgrind:
 	main
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all -v ./bin/main
-
 
 run:
 	@echo -e "\n## Running ./$(TARGET)...\n"
