@@ -2,15 +2,15 @@ CC = gcc
 CFLAGS = -g -Wall
 SRCDIR = src
 INCDIR = include
-BUILDDIR = build
+BINDIR = bin
 PGM = ptar
 INC = -I $(INCDIR)
 OBJDIR = obj
-TARGET = bin/$(PGM)
+TARGET = $(BINDIR)/$(PGM)
 OBJ = $(wildcard $(OBJDIR)/*.o)
 
 $(shell mkdir -p $(OBJDIR))
-$(shell mkdir -p bin)
+$(shell mkdir -p $(BINDIR))
 
 all: main run
 
